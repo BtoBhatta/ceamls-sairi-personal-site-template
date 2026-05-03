@@ -139,10 +139,8 @@
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba($navy, 0.7);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  z-index: 105;                   // above mobile-header (100), below drawer (110)
+  background: rgba(0, 0, 0, 0.6);   // solid darken — no blur, matching fresh
+  z-index: 105;                     // above mobile-header (100), below drawer (110)
   opacity: 0;
   transition: opacity 0.3s ease;
   &.active { display: block; opacity: 1; }
@@ -156,6 +154,11 @@
     flex-direction: column;
     padding: $space-lg;
     padding-top: calc(56px + #{$space-lg});
+    // Neutralize the desktop stacking context (position: relative; z-index: 1)
+    // so the fixed-position .site-nav drawer can rise above the .nav-overlay
+    // in the root stacking context.
+    position: static;
+    z-index: auto;
   }
 
   .site-nav {
