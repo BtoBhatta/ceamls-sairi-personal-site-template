@@ -25,29 +25,34 @@ jobs:
         with:
           ruby-version: "3.2"
           bundler-cache: true
-      - uses: actions/configure-pages@v4
+      # base_path is "" for user pages (foo.github.io) and "/repo" for project
+      # pages (foo.github.io/repo). We pass it as --baseurl so all asset URLs
+      # and `relative_url` filters resolve correctly under either deploy.
+      - id: pages
+        uses: actions/configure-pages@v4
 
       # Live build — uses the theme_name set in _config.yml
       - name: Build live site
-        run: bundle exec jekyll build
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
 
       # Preview builds — one per theme, into _site/_preview/<theme>/
+      # Each preview's baseurl combines the deploy root with /_preview/<theme>.
       - name: Build preview (minimal)
-        run: bundle exec jekyll build --config _config.yml,_config_preview_minimal.yml -d _site/_preview/minimal
+        run: bundle exec jekyll build --config _config.yml,_config_preview_minimal.yml --baseurl "${{ steps.pages.outputs.base_path }}/_preview/minimal" -d _site/_preview/minimal
         env:
           JEKYLL_ENV: production
       - name: Build preview (premium)
-        run: bundle exec jekyll build --config _config.yml,_config_preview_premium.yml -d _site/_preview/premium
+        run: bundle exec jekyll build --config _config.yml,_config_preview_premium.yml --baseurl "${{ steps.pages.outputs.base_path }}/_preview/premium" -d _site/_preview/premium
         env:
           JEKYLL_ENV: production
       - name: Build preview (fresh)
-        run: bundle exec jekyll build --config _config.yml,_config_preview_fresh.yml -d _site/_preview/fresh
+        run: bundle exec jekyll build --config _config.yml,_config_preview_fresh.yml --baseurl "${{ steps.pages.outputs.base_path }}/_preview/fresh" -d _site/_preview/fresh
         env:
           JEKYLL_ENV: production
       - name: Build preview (signal)
-        run: bundle exec jekyll build --config _config.yml,_config_preview_signal.yml -d _site/_preview/signal
+        run: bundle exec jekyll build --config _config.yml,_config_preview_signal.yml --baseurl "${{ steps.pages.outputs.base_path }}/_preview/signal" -d _site/_preview/signal
         env:
           JEKYLL_ENV: production
 
