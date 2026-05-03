@@ -2,13 +2,13 @@
   <p class="hero__label reveal">{{ site.program }} · Summer {{ site.year }} Researcher</p>
 
   <h1 class="hero__name reveal delay-1">
-    {{ page.title }}<span class="hero__dot">.</span>
+    {{ page.display_name | default: page.title }}<span class="hero__dot">.</span>
   </h1>
 
   <div class="hero__row reveal delay-2">
     {% if page.image %}
     <figure class="hero__portrait">
-      <img class="hero__photo" src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+      <img class="hero__photo" src="{{ page.image | relative_url }}" alt="{{ page.display_name | default: page.title }}">
     </figure>
     {% endif %}
 

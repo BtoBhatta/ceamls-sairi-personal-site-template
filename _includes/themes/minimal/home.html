@@ -1,10 +1,10 @@
 <div class="homepage-container fade-slide-up">
   <div class="profile-card">
     {% if page.image %}
-      <img class="profile-image" src="{{ page.image | relative_url }}" alt="{{ page.title }}" />
+      <img class="profile-image" src="{{ page.image | relative_url }}" alt="{{ page.display_name | default: page.title }}" />
     {% endif %}
 
-    <h1 class="site-title">{{ page.title }}</h1>
+    <h1 class="site-title">{{ page.display_name | default: page.title }}</h1>
     <p class="site-subtitle">{{ page.description }}</p>
 
     {% if page.motto %}

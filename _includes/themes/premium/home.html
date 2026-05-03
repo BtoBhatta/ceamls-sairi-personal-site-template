@@ -4,7 +4,7 @@
     <div class="hero__grid">
       <div class="hero__text reveal">
         <span class="hero__eyebrow">{{ site.program }} · Summer {{ site.year }}</span>
-        <h1 class="hero__name">{{ page.title }}</h1>
+        <h1 class="hero__name">{{ page.display_name | default: page.title }}</h1>
         {% if page.motto %}
         <p class="hero__motto">{{ page.motto }}</p>
         {% endif %}
@@ -16,7 +16,7 @@
       {% if page.image %}
       <div class="hero__portrait reveal delay-1">
         <div class="hero__portrait-frame">
-          <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+          <img src="{{ page.image | relative_url }}" alt="{{ page.display_name | default: page.title }}">
         </div>
       </div>
       {% endif %}

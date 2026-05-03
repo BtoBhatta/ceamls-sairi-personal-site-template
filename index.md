@@ -1,6 +1,7 @@
 ---
 layout: home
-title: Clyde Tandjong
+title: Home
+display_name: Clyde Tandjong                  # <- shown as the big display name on the hero
 description: My CEAMLS SAIRI Summer Research Site
 
 motto: "Curious about how research can shape better tools for everyday life."

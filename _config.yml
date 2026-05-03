@@ -20,7 +20,7 @@ logo: /assets/images/logo.png
 # ----- Theme selection -----
 # Choose one of: minimal | premium | fresh | signal
 # See README.md for screenshots of each theme.
-theme_name: signal
+theme_name: minimal
 
 # ----- Site behavior -----
 show_downloads: false
