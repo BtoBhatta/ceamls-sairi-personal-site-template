@@ -12,10 +12,14 @@ url: https://your-username.github.io               # <- your final site URL (can
 lang: en-US
 
 # ----- Branding (program-wide; rarely changes) -----
-program: CEAMLS SAIRI                              # program name shown in nav/footer
-program_long: CEAMLS SAIRI Summer Research         # longer form used in descriptive text
-year: 2026                                         # the cohort year (shown as "Summer {{ site.year }}")
-logo: /assets/images/logo.png
+program: CEAMLS SAIRI                       
+program_long: CEAMLS SAIRI Summer Research        
+year: 2026                                         
+# Two logo variants — themes pick the one that contrasts with their background.
+# Light themes (minimal, premium) use logo_on_light; dark themes (fresh, signal)
+# use logo_on_dark.
+logo_on_light: /assets/images/logo-on-light.png
+logo_on_dark:  /assets/images/logo-on-dark.png
 
 # ----- Theme selection -----
 # Choose one of: minimal | premium | fresh | signal

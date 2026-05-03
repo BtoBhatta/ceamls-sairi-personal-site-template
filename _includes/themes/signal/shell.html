@@ -10,8 +10,8 @@
 <div class="site-container">
   <nav class="site-nav" id="siteNav" aria-label="Main navigation">
     <div class="site-nav__brand">
-      {% if site.logo %}
-      <img src="{{ site.logo | relative_url }}" alt="{{ site.program }}" class="site-nav__logo" />
+      {% if site.logo_on_dark %}
+      <img src="{{ site.logo_on_dark | relative_url }}" alt="{{ site.program }}" class="site-nav__logo" />
       {% endif %}
       <span class="site-nav__program">{{ site.program }}</span>
       <span class="site-nav__year">Summer {{ site.year }}</span>

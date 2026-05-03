@@ -1,5 +1,8 @@
 <div class="site-container">
   <aside class="sidebar fade-slide-up" id="sidebar">
+    {% if site.logo_on_light %}
+    <img src="{{ site.logo_on_light | relative_url }}" alt="{{ site.program }}" class="sidebar-logo" />
+    {% endif %}
     <div class="sidebar-header">
       <h3>Navigation</h3>
       <button id="menu-toggle" class="hamburger" aria-label="Toggle navigation">☰</button>
