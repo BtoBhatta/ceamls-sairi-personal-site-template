@@ -1,0 +1,4 @@
+# Override config for the fresh-theme preview build.
+theme_name: fresh
+baseurl: /_preview/fresh
+preview_mode: true

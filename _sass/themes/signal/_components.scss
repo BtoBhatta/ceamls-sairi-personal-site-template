@@ -1,0 +1,71 @@
+// ==========================================================
+// Shared Components
+// ==========================================================
+
+// ---- Tags ----
+.tag {
+  display: inline-block;
+  font-family: $font-mono;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $muted;
+  border: 1px solid $rule-strong;
+  padding: $space-xs $space-sm;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: $orange;
+    border-color: rgba($orange, 0.3);
+  }
+}
+
+// ---- Section labels ----
+.section-label {
+  display: inline-block;
+  font-family: $font-display;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: $space-xs $space-md;
+  border-radius: 4px;
+  margin-bottom: $space-md;
+}
+
+// ---- Decorative circle ----
+.deco-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid $rule-strong;
+  position: absolute;
+  pointer-events: none;
+
+  &--orange {
+    border-color: rgba($orange, 0.15);
+  }
+}
+
+// ---- Accent line ----
+.accent-line {
+  width: 60px;
+  height: 4px;
+  background: $orange;
+  border-radius: 2px;
+  margin-bottom: $space-lg;
+}
+
+// ---- Card surface ----
+.card {
+  background: $navy-light;
+  border: 1px solid $rule;
+  border-radius: 8px;
+  padding: $space-lg;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: $rule-strong;
+  }
+}

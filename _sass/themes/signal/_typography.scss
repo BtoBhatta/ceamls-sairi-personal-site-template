@@ -1,0 +1,104 @@
+// ==========================================================
+// Typography
+// ==========================================================
+
+body {
+  font-family: $font-body;
+  font-size: 16px;
+  line-height: 1.7;
+  color: $warm-white;
+  background: $navy;
+}
+
+// Headings — Syne display font, bold and geometric
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-display;
+  font-weight: 800;
+  line-height: 1.15;
+  color: $warm-white;
+  margin-bottom: $space-md;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: 2.8rem; }
+h2 { font-size: 1.9rem; }
+h3 { font-size: 1.3rem; }
+h4 { font-size: 1.1rem; }
+
+p {
+  margin-bottom: $space-md;
+  color: $warm-white-dim;
+  &:last-child { margin-bottom: 0; }
+}
+
+a {
+  color: $orange;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $orange-hover;
+  }
+}
+
+strong {
+  font-weight: 700;
+  color: $warm-white;
+}
+
+blockquote {
+  border-left: 4px solid $orange;
+  padding: $space-sm $space-lg;
+  margin: $space-lg 0;
+  font-style: italic;
+  color: $warm-white-dim;
+}
+
+code {
+  font-family: $font-mono;
+  font-size: 0.88em;
+  background: $navy-mid;
+  color: $orange;
+  padding: 0.15em 0.5em;
+  border-radius: 4px;
+}
+
+pre {
+  background: $navy-mid;
+  padding: $space-lg;
+  border-radius: 8px;
+  border: 1px solid $rule-strong;
+  overflow-x: auto;
+  margin: $space-lg 0;
+
+  code {
+    background: none;
+    padding: 0;
+    color: $warm-white-dim;
+  }
+}
+
+hr {
+  border: none;
+  border-top: 1px solid $rule-strong;
+  margin: $space-xl 0;
+}
+
+// Lists inside content
+.post-content ul, .post-content ol,
+.post-section ul, .post-section ol,
+.about-bio ul, .about-bio ol,
+.project-section ul, .project-section ol {
+  padding-left: $space-lg;
+  margin-bottom: $space-md;
+  li {
+    list-style: disc;
+    margin-bottom: $space-sm;
+    color: $warm-white-dim;
+  }
+}
+
+.post-content ol li, .post-section ol li,
+.about-bio ol li, .project-section ol li {
+  list-style: decimal;
+}

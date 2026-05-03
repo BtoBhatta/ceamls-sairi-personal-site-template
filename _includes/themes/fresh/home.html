@@ -1,0 +1,67 @@
+<section class="hero">
+  <p class="hero__label reveal">{{ site.program }} · Summer {{ site.year }} Researcher</p>
+
+  <h1 class="hero__name reveal delay-1">
+    {{ page.title }}<span class="hero__dot">.</span>
+  </h1>
+
+  <div class="hero__row reveal delay-2">
+    {% if page.image %}
+    <figure class="hero__portrait">
+      <img class="hero__photo" src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+    </figure>
+    {% endif %}
+
+    <div class="hero__meta">
+      {% if page.motto %}
+      <p class="hero__motto">&ldquo;{{ page.motto }}&rdquo;</p>
+      {% endif %}
+
+      {% if page.description %}
+      <p class="hero__desc">{{ page.description }}</p>
+      {% endif %}
+
+      {% if page.quick_facts %}
+      <ul class="hero__facts">
+        {% for fact in page.quick_facts %}
+        <li class="hero__fact">
+          <span class="hero__fact-num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+          <span class="hero__fact-text">{{ fact }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <div class="hero__actions">
+        {% if page.linkedin %}
+        <a href="{{ page.linkedin }}" class="hero__link" target="_blank" rel="noopener">
+          <span>Connect on LinkedIn</span>
+          <span class="hero__link-arrow">→</span>
+        </a>
+        {% endif %}
+        <a href="{{ '/about-my-project.html' | relative_url }}" class="hero__link">
+          <span>Read about my project</span>
+          <span class="hero__link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if page.currently %}
+<section class="now reveal delay-3">
+  <div class="now__head">
+    <span class="now__eyebrow">Currently</span>
+    <span class="now__rule"></span>
+  </div>
+  <ul class="now__list">
+    {% for item in page.currently %}
+    <li class="now__item">
+      <span class="now__label">{{ item.label | upcase }}</span>
+      <span class="now__sep">·</span>
+      <span class="now__text">{{ item.text }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}

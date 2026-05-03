@@ -1,0 +1,65 @@
+<section class="hero">
+  <div class="hero__bg-pattern"></div>
+  <div class="container">
+    <div class="hero__grid">
+      <div class="hero__text reveal">
+        <span class="hero__eyebrow">{{ site.program }} · Summer {{ site.year }}</span>
+        <h1 class="hero__name">{{ page.title }}</h1>
+        {% if page.motto %}
+        <p class="hero__motto">{{ page.motto }}</p>
+        {% endif %}
+        {% if page.linkedin %}
+        <a href="{{ page.linkedin }}" class="btn btn--primary" target="_blank">Connect on LinkedIn</a>
+        {% endif %}
+      </div>
+
+      {% if page.image %}
+      <div class="hero__portrait reveal delay-1">
+        <div class="hero__portrait-frame">
+          <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% if page.quick_facts %}
+<section class="facts">
+  <div class="container">
+    <div class="facts__row reveal">
+      {% for fact in page.quick_facts %}
+      <div class="facts__item">
+        <span class="facts__text">{{ fact }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if page.currently %}
+<section class="now">
+  <div class="container">
+    <div class="now__head reveal">
+      <span class="now__eyebrow">Currently</span>
+      <span class="now__rule"></span>
+    </div>
+    <ul class="now__list reveal delay-1">
+      {% for item in page.currently %}
+      <li class="now__item">
+        <span class="now__label">{{ item.label | upcase }}</span>
+        <span class="now__sep">·</span>
+        <span class="now__text">{{ item.text }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
+{% comment %}
+  page.description is part of the contract but the premium-light home layout
+  did not display it; we preserve that behavior here. The hero displays motto
+  in its place to match the original visual treatment.
+{% endcomment %}

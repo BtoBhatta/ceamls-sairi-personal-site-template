@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Faculty mentor photo placeholder">
+  <rect width="400" height="400" fill="#fee2e2"/>
+  <circle cx="200" cy="155" r="62" fill="#f87171"/>
+  <path d="M88 388c0-62 50-112 112-112s112 50 112 112" fill="#f87171"/>
+  <text x="200" y="376" text-anchor="middle" fill="#7f1d1d" font-family="-apple-system, system-ui, sans-serif" font-size="14" font-weight="500">Faculty mentor photo</text>
+</svg>

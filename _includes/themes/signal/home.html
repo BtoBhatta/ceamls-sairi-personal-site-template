@@ -1,0 +1,52 @@
+<div class="hero animate-in">
+  {% if page.image %}
+  <div class="hero__photo-wrap">
+    <img class="hero__photo" src="{{ page.image | relative_url }}" alt="{{ page.title }}" />
+  </div>
+  {% endif %}
+
+  <div class="hero__content">
+    <h1 class="hero__name">{{ page.title }}</h1>
+    <p class="hero__subtitle">{{ page.description }}</p>
+
+    {% if page.motto %}
+    <div class="hero__motto">{{ page.motto }}</div>
+    {% endif %}
+
+    {% if page.quick_facts %}
+    <ul class="hero__facts">
+      {% for fact in page.quick_facts %}
+        <li>{{ fact }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if page.linkedin %}
+    <a href="{{ page.linkedin }}" class="hero__link" target="_blank">
+      Connect on LinkedIn ↗
+    </a>
+    {% endif %}
+
+    <div class="hero__teaser">
+      Currently researching — <a href="{{ '/about-my-project.html' | relative_url }}">view my project →</a>
+    </div>
+  </div>
+</div>
+
+{% if page.currently %}
+<section class="now animate-in">
+  <div class="now__head">
+    <h2 class="now__title">Currently<span class="now__dot">.</span></h2>
+    <span class="now__rule"></span>
+  </div>
+  <ul class="now__list">
+    {% for item in page.currently %}
+    <li class="now__item">
+      <span class="now__label">{{ item.label | upcase }}</span>
+      <span class="now__sep">·</span>
+      <span class="now__text">{{ item.text }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}

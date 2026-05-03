@@ -1,0 +1,4 @@
+# Override config for the signal-theme preview build.
+theme_name: signal
+baseurl: /_preview/signal
+preview_mode: true

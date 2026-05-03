@@ -1,0 +1,66 @@
+<article class="blog-post">
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    {% if page.subtitle %}
+    <p class="post-author">{{ page.subtitle }}</p>
+    {% endif %}
+  </header>
+
+  {% if page.project_title %}
+  <section class="post-section">
+    <h3>Project Title</h3>
+    <p>{{ page.project_title }}</p>
+  </section>
+  {% endif %}
+
+  {% if page.problem %}
+  <section class="post-section">
+    <h3>Problem</h3>
+    {{ page.problem | markdownify }}
+  </section>
+  {% endif %}
+
+  {% if page.approach %}
+  <section class="post-section">
+    <h3>Approach</h3>
+    {{ page.approach | markdownify }}
+  </section>
+  {% endif %}
+
+  {% if page.outcome %}
+  <section class="post-section">
+    <h3>Expected Outcome</h3>
+    {{ page.outcome | markdownify }}
+  </section>
+  {% endif %}
+
+  {% if page.final_report_url %}
+  <p><strong>Final Report:</strong> <a href="{{ page.final_report_url }}" target="_blank">View PDF</a></p>
+  {% endif %}
+
+  {% if page.grad_mentor %}
+  <section class="post-section">
+    <h3>Graduate Student Mentor</h3>
+    <p>
+      {% if page.grad_mentor.linkedin %}
+        <a href="{{ page.grad_mentor.linkedin }}" target="_blank">{{ page.grad_mentor.name }}</a>
+      {% else %}
+        {{ page.grad_mentor.name }}
+      {% endif %}
+    </p>
+  </section>
+  {% endif %}
+
+  {% if page.faculty_mentor %}
+  <section class="post-section">
+    <h3>Faculty Mentor</h3>
+    <p>
+      {% if page.faculty_mentor.linkedin %}
+        <a href="{{ page.faculty_mentor.linkedin }}" target="_blank">{{ page.faculty_mentor.name }}</a>
+      {% else %}
+        {{ page.faculty_mentor.name }}
+      {% endif %}
+    </p>
+  </section>
+  {% endif %}
+</article>

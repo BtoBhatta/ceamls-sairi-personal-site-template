@@ -1,0 +1,70 @@
+<article class="blog-post mentor-profile">
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+  </header>
+
+  <div class="mentor-tabs">
+    <div class="mentor-tab-links">
+      <button class="tab-link active" data-mentor-tab="gradMentor">
+        🎓 Graduate Student Mentor
+      </button>
+      <button class="tab-link" data-mentor-tab="facultyMentor">
+        👩🏽‍🏫 Faculty Mentor
+      </button>
+    </div>
+  </div>
+
+  <section id="gradMentor" class="mentor-tab-content" style="display: block">
+    <div class="mentor-card fade-slide-up">
+      {% if page.graduate_mentor.image %}
+      <img
+        class="mentor-image"
+        src="{{ page.graduate_mentor.image | relative_url }}"
+        alt="{{ page.graduate_mentor.name }}"
+      />
+      {% endif %}
+      <div class="mentor-info">
+        <h2>{{ page.graduate_mentor.name }}</h2>
+        <p class="mentor-title">{{ page.graduate_mentor.title }}</p>
+        {% if page.graduate_mentor.website %}
+        <p>
+          <a class="mentor-link" href="{{ page.graduate_mentor.website }}" target="_blank">Visit Website ↗</a>
+        </p>
+        {% endif %}
+      </div>
+    </div>
+    {% if page.graduate_mentor.bio %}
+    <section class="post-section">
+      <h3>About</h3>
+      {{ page.graduate_mentor.bio | markdownify }}
+    </section>
+    {% endif %}
+  </section>
+
+  <section id="facultyMentor" class="mentor-tab-content" style="display: none">
+    <div class="mentor-card fade-slide-up">
+      {% if page.faculty_mentor.image %}
+      <img
+        class="mentor-image"
+        src="{{ page.faculty_mentor.image | relative_url }}"
+        alt="{{ page.faculty_mentor.name }}"
+      />
+      {% endif %}
+      <div class="mentor-info">
+        <h2>{{ page.faculty_mentor.name }}</h2>
+        <p class="mentor-title">{{ page.faculty_mentor.title }}</p>
+        {% if page.faculty_mentor.website %}
+        <p>
+          <a class="mentor-link" href="{{ page.faculty_mentor.website }}" target="_blank">Visit Website ↗</a>
+        </p>
+        {% endif %}
+      </div>
+    </div>
+    {% if page.faculty_mentor.bio %}
+    <section class="post-section">
+      <h3>About</h3>
+      {{ page.faculty_mentor.bio | markdownify }}
+    </section>
+    {% endif %}
+  </section>
+</article>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="Gallery photo placeholder">
+  <rect width="600" height="400" fill="#dbeafe"/>
+  <rect x="60" y="80" width="180" height="220" fill="#3b82f6" rx="4"/>
+  <rect x="260" y="140" width="140" height="160" fill="#1d4ed8" rx="4"/>
+  <rect x="420" y="100" width="120" height="200" fill="#60a5fa" rx="4"/>
+  <text x="300" y="385" text-anchor="middle" fill="#1e3a8a" font-family="-apple-system, system-ui, sans-serif" font-size="13" font-weight="500">Gallery photo 2 — replace me</text>
+</svg>

@@ -1,0 +1,5 @@
+---
+layout: default
+---
+{% assign theme_name = site.theme_name | default: 'minimal' %}
+{% include themes/{{ theme_name }}/blog.html %}

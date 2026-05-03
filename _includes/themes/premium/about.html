@@ -1,0 +1,78 @@
+<article>
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero__content reveal">
+        <span class="page-hero__eyebrow">About</span>
+        <h1>{{ page.about.name }}</h1>
+        {% if page.about.role %}
+        <p class="page-hero__sub">{{ page.about.role }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <section class="about-intro">
+    <div class="container">
+      <div class="about-intro__grid">
+        {% if page.about.image %}
+        <div class="about-intro__photo reveal">
+          <img src="{{ page.about.image | relative_url }}" alt="{{ page.about.name }}">
+        </div>
+        {% endif %}
+        <div class="about-intro__bio reveal delay-1">
+          {% if page.about.bio %}
+          <div class="prose">
+            {{ page.about.bio | markdownify }}
+          </div>
+          {% endif %}
+          {% if page.about.linkedin %}
+          <a href="{{ page.about.linkedin }}" class="btn btn--outline" target="_blank">Connect on LinkedIn →</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% if page.about.hobbies %}
+  <section class="hobbies">
+    <div class="container">
+      <h2 class="section-title reveal">Beyond Research</h2>
+      <div class="hobbies__list reveal">
+        {% for hobby in page.about.hobbies %}
+        <div class="hobbies__item">
+          <span class="hobbies__icon">{{ hobby.icon }}</span>
+          <div>
+            <h3 class="hobbies__name">{{ hobby.title }}</h3>
+            <p class="hobbies__desc">{{ hobby.description }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if page.about.gallery %}
+  <section class="gallery-section">
+    <div class="container">
+      <h2 class="section-title reveal">Gallery</h2>
+      <div class="gallery reveal">
+        {% for item in page.about.gallery %}
+        <figure class="gallery__fig">
+          <img src="{{ item.image | relative_url }}" alt="{{ item.caption }}">
+          <figcaption>{{ item.caption }}</figcaption>
+        </figure>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true">
+    <button id="lbClose" class="lightbox__close" aria-label="Close">×</button>
+    <button id="lbPrev" class="lightbox__nav lightbox__nav--prev" aria-label="Previous">‹</button>
+    <img id="lbImg" class="lightbox__img" src="" alt="">
+    <button id="lbNext" class="lightbox__nav lightbox__nav--next" aria-label="Next">›</button>
+    <p id="lbCap" class="lightbox__cap"></p>
+  </div>
+  {% endif %}
+</article>

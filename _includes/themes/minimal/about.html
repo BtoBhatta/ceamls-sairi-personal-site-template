@@ -1,0 +1,72 @@
+<article class="about-me-page fade-slide-up">
+  <section class="about-hero">
+    {% if page.about.image %}
+    <img
+      src="{{ page.about.image | relative_url }}"
+      alt="{{ page.about.name }}"
+      class="about-photo"
+    />
+    {% endif %}
+
+    <div class="about-intro">
+      <h1>{{ page.about.name }}</h1>
+      {% if page.about.role %}
+      <p class="about-subtitle">{{ page.about.role }}</p>
+      {% endif %}
+      {% if page.about.linkedin %}
+      <a href="{{ page.about.linkedin }}" class="about-button" target="_blank">Connect on LinkedIn ↗</a>
+      {% endif %}
+    </div>
+  </section>
+
+  {% if page.about.bio %}
+  <section class="about-bio post-section">
+    <h2>My Story</h2>
+    {{ page.about.bio | markdownify }}
+  </section>
+  {% endif %}
+
+  {% if page.about.hobbies %}
+  <section class="about-hobbies post-section">
+    <h2>My Hobbies 🎉</h2>
+    <div class="hobby-grid">
+      {% for hobby in page.about.hobbies %}
+      <div class="hobby-card">
+        <div class="hobby-icon">{{ hobby.icon }}</div>
+        <h3>{{ hobby.title }}</h3>
+        <p>{{ hobby.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if page.about.gallery %}
+  <section class="about-gallery post-section">
+    <div class="gallery-container">
+      <h2>Gallery</h2>
+      <div class="gallery-slider fade" id="gallerySlider">
+        {% for item in page.about.gallery %}
+        <div class="slide{% if forloop.first %} active{% endif %}">
+          <img src="{{ item.image | relative_url }}" alt="{{ item.caption }}"
+               data-modal-src="{{ item.image | relative_url }}"
+               data-modal-caption="{{ item.caption }}" />
+          <p class="caption">{{ item.caption }}</p>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="indicators">
+        {% for item in page.about.gallery %}
+        <span class="dot{% if forloop.first %} active{% endif %}" data-slide-index="{{ forloop.index0 }}"></span>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div id="imageModal" class="modal">
+      <span class="close" id="modalClose">×</span>
+      <img class="modal-content" id="modalImage">
+      <div class="modal-caption" id="modalCaption"></div>
+    </div>
+  </section>
+  {% endif %}
+</article>

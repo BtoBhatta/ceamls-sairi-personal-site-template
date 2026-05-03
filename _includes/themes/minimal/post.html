@@ -1,0 +1,41 @@
+<article class="blog-post">
+  <header class="post-header">
+    <p class="post-date">{{ page.date | date: "%B %-d, %Y" }}</p>
+    <h1 class="post-title">{{ page.title }}</h1>
+    <p class="post-author">By {{ page.author | default: site.author }}</p>
+  </header>
+
+  <section class="post-content">
+    {{ content }}
+  </section>
+
+  {% if page.what_i_learned %}
+  <section class="post-section">
+    <h3>What I Learned</h3>
+    {{ page.what_i_learned | markdownify }}
+  </section>
+  {% endif %}
+
+  {% if page.blockers %}
+  <section class="post-section">
+    <h3>Blockers</h3>
+    {{ page.blockers | markdownify }}
+  </section>
+  {% endif %}
+
+  {% if page.reflection %}
+  <section class="post-section">
+    <h3>Reflection</h3>
+    {{ page.reflection | markdownify }}
+  </section>
+  {% endif %}
+
+  {% if page.tags %}
+  <footer class="post-tags">
+    <span>Tags:</span>
+    {% for tag in page.tags %}
+      <span class="tag">{{ tag }}</span>
+    {% endfor %}
+  </footer>
+  {% endif %}
+</article>

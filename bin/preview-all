@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Build the live site + all four theme previews into _site/, then serve.
+# Usage:
+#   bin/preview-all           # build all 5 + serve at http://localhost:4000
+#   bin/preview-all build     # build only, don't serve
+set -e
+
+cd "$(dirname "$0")/.."
+
+echo "→ Building live site..."
+bundle exec jekyll build
+
+for theme in minimal premium fresh signal; do
+  echo "→ Building preview ($theme)..."
+  bundle exec jekyll build \
+    --config "_config.yml,_config_preview_${theme}.yml" \
+    -d "_site/_preview/${theme}"
+done
+
+echo "✓ All builds complete."
+echo "  Live:    _site/"
+echo "  Preview: _site/_preview/{minimal,premium,fresh,signal}/"
+
+if [ "$1" != "build" ]; then
+  echo ""
+  echo "→ Serving _site/ on http://localhost:4000"
+  echo "  Live:    http://localhost:4000/"
+  echo "  Preview: http://localhost:4000/_preview/<theme>/"
+  echo ""
+  cd _site && exec ruby -run -e httpd . -p 4000
+fi

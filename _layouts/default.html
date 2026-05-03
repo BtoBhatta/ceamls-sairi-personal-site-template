@@ -1,73 +1,71 @@
+{% assign theme_name = site.theme_name | default: 'minimal' %}
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
+<html lang="{{ site.lang | default: 'en-US' }}">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% if site.preview_mode %}<meta name="robots" content="noindex,nofollow">{% endif %}
   {% seo %}
 
-  <link
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
-  rel="stylesheet"
-  integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7ieDXYWYfJ96Tz7qqxsl4vUdozPz/KH3l9y"
-  crossorigin="anonymous">
-  <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  {% include themes/{{ theme_name }}/head-extra.html %}
   {% include head-custom.html %}
+
+  <style>
+    /* Theme-agnostic preview switcher styling. Inherits page text color so it
+       works against any theme background (light premium, dark fresh/signal). */
+    .preview-switcher {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 2rem;
+      text-align: center;
+      font-family: ui-monospace, SFMono-Regular, 'JetBrains Mono', Menlo, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: inherit;
+      opacity: 0.45;
+      transition: opacity 0.25s ease;
+    }
+    .preview-switcher:hover { opacity: 1; }
+    .preview-switcher__label { margin-right: 0.6rem; opacity: 0.85; }
+    .preview-switcher__link {
+      display: inline-block;
+      margin: 0 0.45rem;
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px dotted currentColor;
+      padding-bottom: 1px;
+    }
+    .preview-switcher__link:hover { border-bottom-style: solid; }
+    .preview-switcher__link.is-active {
+      font-weight: 700;
+      border-bottom: none;
+      opacity: 1;
+    }
+    .preview-switcher__back {
+      display: inline-block;
+      margin-left: 0.9rem;
+      color: inherit;
+      text-decoration: none;
+      font-weight: 700;
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 1px;
+    }
+  </style>
 </head>
-<body>
-  <div class="site-container">
-    <aside class="sidebar fade-slide-up" id="sidebar">
-      <div class="sidebar-header">
-        <h3>Navigation</h3>
-        <button id="menu-toggle" class="hamburger" aria-label="Toggle navigation">☰</button>
-      </div>
-      <nav class="sidebar-links" id="sidebar-links">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/about-me.html">About Me</a></li>
-          <li><a href="/about-my-mentor.html">About My Mentors</a></li>
-          <li><a href="/about-my-project.html">About My Project</a></li>
-          <li><a href="/my-blog.html">My Blog</a></li>
-        </ul>
-      </nav>
-    </aside>
-    
-    
-
-    <main class="content-area fade-slide-up">
-      {{ content }}
-    </main>
-  </div>
-
-  <footer class="footer">
-    {% if site.github.is_project_page %}
-    <p>This project is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
-    {% endif %}
-  </footer>
-
-  <script>
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    });
-
-    document.querySelectorAll('.fade-slide-up').forEach(el => observer.observe(el));
-  </script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const toggleBtn = document.getElementById("menu-toggle");
-    const navList = document.getElementById("sidebar-links");
-
-    toggleBtn.addEventListener("click", function () {
-      navList.classList.toggle("visible");
-    });
-  });
-</script>
-
+<body class="theme-{{ theme_name }} page-{{ page.layout }}{% if site.preview_mode %} is-preview{% endif %}">
+  {% include themes/{{ theme_name }}/shell.html %}
+  {% comment %}
+    Show the theme switcher only when:
+      - running locally (jekyll.environment != 'production'), OR
+      - viewing a deployed PREVIEW page (so visitors can get back to the live site).
+    On the deployed live site (production + not a preview page), the switcher is hidden
+    entirely so the page reads as the finished product.
+  {% endcomment %}
+  {% if jekyll.environment != 'production' or site.preview_mode %}
+    {% include preview-switcher.html %}
+  {% endif %}
 </body>
 </html>

@@ -1,0 +1,45 @@
+<article class="post">
+  <a href="{{ '/my-blog.html' | relative_url }}" class="post__back">← Back to blog</a>
+
+  <header class="post__header reveal">
+    <p class="post__date">{{ page.date | date: "%B %-d, %Y" }}</p>
+    <h1 class="post__title">{{ page.title }}</h1>
+    {% if page.author %}
+    <p class="post__author">By {{ page.author }}</p>
+    {% endif %}
+  </header>
+
+  <div class="post-content reveal delay-1">
+    {{ content }}
+  </div>
+
+  {% if page.what_i_learned %}
+  <section class="post-section post-section--learned reveal delay-1">
+    <div class="post-section__label">Learned</div>
+    {{ page.what_i_learned | markdownify }}
+  </section>
+  {% endif %}
+
+  {% if page.blockers %}
+  <section class="post-section post-section--blockers reveal delay-2">
+    <div class="post-section__label">Blockers</div>
+    {{ page.blockers | markdownify }}
+  </section>
+  {% endif %}
+
+  {% if page.reflection %}
+  <section class="post-section post-section--reflection reveal delay-3">
+    <div class="post-section__label">Reflection</div>
+    {{ page.reflection | markdownify }}
+  </section>
+  {% endif %}
+
+  {% if page.tags %}
+  <footer class="post-tags reveal">
+    <span class="post-tags__label">Keywords</span>
+    {% for tag in page.tags %}
+    <span class="tag">{{ tag }}</span>
+    {% endfor %}
+  </footer>
+  {% endif %}
+</article>

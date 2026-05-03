@@ -1,32 +1,5 @@
 ---
 layout: default
 ---
-
-<div class="homepage-container fade-slide-up">
-  <div class="profile-card">
-    {% if page.image %}
-      <img class="profile-image" src="{{ page.image | relative_url }}" alt="{{ page.title }}" />
-    {% endif %}
-
-    <h1 class="site-title">{{ page.title }}</h1>
-    <p class="site-subtitle">{{ page.description }}</p>
-
-    {% if page.motto %}
-    <p class="homepage-motto">"{{ page.motto }}"</p>
-    {% endif %}
-
-    {% if page.quick_facts %}
-    <ul class="quick-facts">
-      {% for fact in page.quick_facts %}
-        <li>{{ fact }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-
-    {% if page.linkedin %}
-    <a href="{{ page.linkedin }}" class="about-button" target="_blank">
-      Connect on LinkedIn ↗
-    </a>
-    {% endif %}
-  </div>
-</div>
+{% assign theme_name = site.theme_name | default: 'minimal' %}
+{% include themes/{{ theme_name }}/home.html %}

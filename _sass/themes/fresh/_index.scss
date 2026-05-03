@@ -1,0 +1,1138 @@
+// =====================================================
+// Fresh theme — warm dark palette, sticky sidebar nav, scroll reveals
+// Source: vendored from git branch `fresh-redesign`
+//
+// Front-matter contract consumed (matches the canonical contract
+// shared with all themes — switching themes preserves content):
+//   home:    page.image, page.title, page.description, page.motto,
+//            page.quick_facts (array of strings), page.linkedin
+//   about:   page.about.{name, role, image, linkedin, bio,
+//            hobbies (array of {icon, title, description}),
+//            gallery (array of {image, caption})}
+//   mentor:  page.title,
+//            page.graduate_mentor.{name, title, image, website, bio},
+//            page.faculty_mentor.{name, title, image, website, bio}
+//   post:    page.title, page.date, page.author, page.what_i_learned,
+//            page.blockers, page.reflection, page.tags
+//   project: page.title, page.subtitle, page.project_title,
+//            page.problem, page.approach, page.outcome,
+//            page.final_report_url,
+//            page.grad_mentor.{name, linkedin},
+//            page.faculty_mentor.{name, linkedin}
+// =====================================================
+
+// ==========================================================
+// CEAMLS SAIRI — Research Portfolio Theme
+// Warm dark palette. Intentional spacing. Scroll reveals.
+// ==========================================================
+
+// --- Design Tokens ---
+$base: #111111;
+$surface: #1A1A1A;
+$raised: #242424;
+$text: #ECECEC;
+$text-dim: rgba(#ECECEC, 0.65);
+$muted: #777777;
+$accent: #FF6B35;
+$accent-hover: #E85A25;
+$border: rgba(255,255,255, 0.08);
+$border-strong: rgba(255,255,255, 0.14);
+$learned-color: #4ADE80;
+$blocker-color: #FBBF24;
+$reflect-color: #A78BFA;
+
+$font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+$font-body: 'Karla', system-ui, sans-serif;
+$font-mono: 'JetBrains Mono', monospace;
+
+$bp-tablet: 768px;
+$bp-mobile: 520px;
+
+$max-w: 880px;
+$sidebar-w: 260px;
+$canvas-w: 1240px;
+
+// --- Reset ---
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { min-height: 100vh; -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; }
+ul, ol { list-style: none; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; border: none; background: none; cursor: pointer; }
+
+// --- Base ---
+body {
+  font-family: $font-body;
+  font-size: 17.5px;
+  line-height: 1.72;
+  color: $text;
+  background: $base;
+}
+
+h1, h2, h3, h4 {
+  font-family: $font-display;
+  font-weight: 800;
+  color: $text;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+h1 { font-size: 3.1rem; margin-bottom: 1.1rem; }
+h2 { font-size: 2rem; margin-bottom: 0.85rem; }
+h3 { font-size: 1.35rem; margin-bottom: 0.55rem; }
+h4 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+
+p { margin-bottom: 1rem; color: $text-dim; &:last-child { margin-bottom: 0; } }
+
+a.link {
+  color: $accent;
+  transition: opacity 0.2s;
+  &:hover { opacity: 0.8; }
+}
+
+strong { color: $text; font-weight: 600; }
+
+code {
+  font-family: $font-mono;
+  font-size: 0.86em;
+  background: $raised;
+  padding: 0.12em 0.4em;
+  border-radius: 4px;
+  color: $accent;
+}
+
+pre {
+  background: $surface;
+  border: 1px solid $border;
+  padding: 1.5rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  code { background: none; padding: 0; color: $text-dim; }
+}
+
+hr { border: none; border-top: 1px solid $border; margin: 3rem 0; }
+
+// Content lists
+.post-content, .post-section, .about-bio, .project-section, .mentor-bio {
+  ul, ol {
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+    li { list-style: disc; margin-bottom: 0.4rem; color: $text-dim; }
+  }
+  ol li { list-style: decimal; }
+}
+
+// --- Layout ---
+.site-wrap {
+  display: flex;
+  gap: 3rem;
+  max-width: $canvas-w;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+  min-width: 0; // allow flex child to shrink properly
+  max-width: $max-w;
+  padding: 4.5rem 0 6rem;
+}
+
+.site-footer {
+  max-width: $canvas-w;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem 3rem;
+  border-top: 1px solid $border;
+  font-size: 0.78rem;
+  color: $muted;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+// --- Navigation ---
+.site-nav {
+  flex: 0 0 $sidebar-w;
+  padding: 4.5rem 0 2rem 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-brand {
+  margin-bottom: 3.5rem;
+}
+
+.nav-brand__logo {
+  width: 44px;
+  margin-bottom: 0.65rem;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+}
+
+.nav-brand__name {
+  font-family: $font-display;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: $text;
+  display: block;
+  letter-spacing: -0.01em;
+}
+
+.nav-brand__sub {
+  font-size: 0.78rem;
+  color: $muted;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  margin-top: 0.3rem;
+  display: block;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  a {
+    display: block;
+    padding: 0.7rem 1rem;
+    font-size: 1.02rem;
+    font-weight: 500;
+    color: $muted;
+    border-radius: 8px;
+    transition: color 0.15s, background 0.15s, padding-left 0.2s;
+
+    &:hover {
+      color: $text;
+      background: rgba(255,255,255, 0.03);
+      padding-left: 1.2rem;
+    }
+
+    &.active {
+      color: $accent;
+      font-weight: 600;
+      background: rgba($accent, 0.08);
+    }
+  }
+}
+
+// Mobile header
+.mobile-bar {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0.85rem 1.5rem;
+  background: rgba($base, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid $border;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobile-bar__brand {
+  font-family: $font-display;
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+.mobile-bar__btn {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0.4rem;
+  span {
+    display: block; width: 20px; height: 2px;
+    background: $text; border-radius: 1px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  &[aria-expanded="true"] {
+    span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    span:nth-child(2) { opacity: 0; }
+    span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  }
+}
+
+.nav-backdrop {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 98;
+  opacity: 0;
+  transition: opacity 0.3s;
+  &.on { display: block; opacity: 1; }
+}
+
+@media (max-width: $bp-tablet) {
+  .mobile-bar { display: flex; }
+  .site-wrap { flex-direction: column; padding: 0 1.25rem; }
+  .main { padding: 5rem 0 4rem; max-width: 100%; }
+  .site-nav {
+    position: fixed; top: 0; left: 0; bottom: 0;
+    width: 260px; background: $surface;
+    border-right: 1px solid $border-strong;
+    padding: 3rem 1.5rem;
+    z-index: 99;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    &.open { transform: translateX(0); }
+  }
+}
+
+// --- Scroll Reveal ---
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  &.visible { opacity: 1; transform: none; }
+}
+.delay-1 { transition-delay: 0.08s; }
+.delay-2 { transition-delay: 0.16s; }
+.delay-3 { transition-delay: 0.24s; }
+.delay-4 { transition-delay: 0.32s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+// ==========================================================
+// HOMEPAGE
+// ==========================================================
+.hero {
+  padding: 1.5rem 0 5rem;
+}
+
+.hero__label {
+  font-family: $font-mono;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: $accent;
+  margin-bottom: 2rem;
+
+  // tiny lead bar before the eyebrow text
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  &::before {
+    content: '';
+    width: 36px;
+    height: 1px;
+    background: $accent;
+  }
+}
+
+.hero__name {
+  font-family: $font-display;
+  font-size: clamp(4rem, 9.5vw, 7rem);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  margin: 0 0 3rem;
+  font-weight: 700;
+}
+
+.hero__dot {
+  color: $accent;
+  display: inline-block;
+  // little visual anchor: the period gets the accent color
+}
+
+.hero__row {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) 1.2fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.hero__portrait {
+  position: relative;
+  margin: 0;
+
+  // offset accent frame behind the photo for editorial depth
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 12px -12px -12px 12px;
+    border: 1px solid $accent;
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+.hero__photo {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 4px;
+  background: $raised;
+  filter: grayscale(0.15) contrast(1.05);
+  transition: filter 0.4s ease;
+
+  &:hover { filter: grayscale(0) contrast(1); }
+}
+
+.hero__meta {
+  padding-top: 0.4rem;
+}
+
+.hero__motto {
+  font-family: $font-display;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.7rem;
+  line-height: 1.32;
+  color: $text;
+  margin: 0 0 1.75rem;
+  // hanging open-quote lifts off the baseline
+  text-indent: -0.4em;
+}
+
+.hero__desc {
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: $text-dim;
+  margin: 0 0 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid $border;
+}
+
+.hero__facts {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.hero__fact {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  font-size: 1rem;
+  color: $text;
+}
+
+.hero__fact-num {
+  font-family: $font-mono;
+  font-size: 0.78rem;
+  color: $accent;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+  min-width: 1.6rem;
+}
+
+.hero__fact-text {
+  color: $text-dim;
+  line-height: 1.55;
+}
+
+.hero__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.hero__link {
+  font-family: $font-display;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: $text;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0;
+  position: relative;
+  transition: color 0.2s;
+
+  // animated underline that grows from the left
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0.15rem;
+    height: 1px;
+    width: 100%;
+    background: $accent;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  &:hover {
+    color: $accent;
+    &::after { transform: scaleX(1); }
+    .hero__link-arrow { transform: translateX(4px); }
+  }
+}
+
+.hero__link-arrow {
+  display: inline-block;
+  color: $accent;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: $bp-tablet) {
+  .hero__row {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .hero__portrait {
+    max-width: 360px;
+    &::before { inset: 10px -10px -10px 10px; }
+  }
+}
+
+// === HOME "CURRENTLY" BLOCK ===
+.now {
+  margin-top: 5rem;
+  padding-top: 3rem;
+  border-top: 1px solid $border;
+}
+.now__head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.now__eyebrow {
+  font-family: $font-mono;
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $accent;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-shrink: 0;
+  &::before {
+    content: '';
+    width: 36px;
+    height: 1px;
+    background: $accent;
+  }
+}
+.now__rule {
+  flex: 1;
+  height: 1px;
+  background: $border;
+}
+.now__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.now__item {
+  display: grid;
+  grid-template-columns: 7rem auto 1fr;
+  gap: 1.1rem;
+  align-items: baseline;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid $border;
+
+  &:first-child { padding-top: 0; }
+}
+.now__label {
+  font-family: $font-mono;
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+  color: $muted;
+}
+.now__sep {
+  color: $accent;
+  font-size: 1.4rem;
+  line-height: 1;
+  align-self: center;
+}
+.now__text {
+  font-family: $font-display;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  color: $text;
+}
+@media (max-width: $bp-tablet) {
+  .now__item {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 0.75rem;
+    row-gap: 0.45rem;
+  }
+  .now__label { grid-column: 1 / 3; }
+  .now__sep   { grid-column: 1; align-self: baseline; }
+  .now__text  { grid-column: 2; font-size: 1.1rem; }
+}
+
+@media (max-width: $bp-mobile) {
+  .hero__name { font-size: 3rem; }
+  .hero__motto { font-size: 1.25rem; }
+}
+
+// ==========================================================
+// ABOUT
+// ==========================================================
+.about {
+  padding: 2rem 0;
+}
+
+.about__hero {
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.about__photo {
+  width: 220px;
+  height: 275px;
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.about__intro h1 { margin-bottom: 0.3rem; }
+
+.about__role {
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $muted;
+  font-weight: 600;
+  margin-bottom: 1.15rem;
+}
+
+.about__cta {
+  color: $accent;
+  font-weight: 600;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: gap 0.2s;
+  &:hover { gap: 0.75rem; }
+}
+
+.about__section {
+  margin-bottom: 4rem;
+}
+
+.about__section-label {
+  font-family: $font-mono;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: $accent;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.about-bio {
+  font-size: 1.15rem;
+  line-height: 1.8;
+
+  p:first-of-type::first-letter {
+    font-family: $font-display;
+    font-size: 3.6rem;
+    font-weight: 800;
+    float: left;
+    line-height: 0.8;
+    margin-right: 0.08em;
+    margin-top: 0.1em;
+    color: $accent;
+  }
+}
+
+// Hobbies — NOT a generic card grid. A clean stacked list.
+.hobby-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.hobby-item {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid $border;
+  transition: border-color 0.2s;
+
+  &:first-child { border-top: 1px solid $border; }
+  &:hover { border-color: $border-strong; }
+}
+
+.hobby-item__icon {
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  width: 2rem;
+  text-align: center;
+}
+
+.hobby-item__title {
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 1rem;
+  color: $text;
+  margin-right: 0.75rem;
+  white-space: nowrap;
+}
+
+.hobby-item__desc {
+  font-size: 0.88rem;
+  color: $muted;
+  line-height: 1.5;
+}
+
+// Gallery — grid with hover zoom
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  &:hover img { transform: scale(1.06); }
+}
+
+.gallery-item__caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 2.5rem 0.75rem 0.75rem;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.85);
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-item:hover .gallery-item__caption {
+  transform: translateY(0);
+}
+
+// Lightbox
+.lightbox {
+  display: none;
+  position: fixed; inset: 0;
+  z-index: 200;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(8px);
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  &.on { display: flex; }
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  color: $text; font-size: 1.4rem;
+  opacity: 0.5; transition: opacity 0.2s;
+  &:hover { opacity: 1; }
+}
+
+.lightbox__img {
+  max-width: 85%; max-height: 80vh;
+  object-fit: contain; border-radius: 8px;
+}
+
+.lightbox__caption {
+  position: absolute;
+  bottom: 2rem;
+  text-align: center;
+  width: 100%;
+  font-size: 0.88rem;
+  color: $muted;
+}
+
+.lightbox__nav {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1px solid $border-strong;
+  display: flex; align-items: center; justify-content: center;
+  color: $text; font-size: 1.1rem;
+  opacity: 0.5; transition: opacity 0.2s, background 0.2s;
+  &:hover { opacity: 1; background: rgba(255,255,255,0.06); }
+  &--prev { left: 1.5rem; }
+  &--next { right: 1.5rem; }
+}
+
+@media (max-width: $bp-tablet) {
+  .about__hero { flex-direction: column; align-items: center; text-align: center; }
+  .gallery-grid { grid-template-columns: 1fr; }
+}
+
+// ==========================================================
+// BLOG POST
+// ==========================================================
+.post {
+  padding: 2rem 0;
+}
+
+.post__back {
+  font-size: 0.82rem;
+  color: $muted;
+  margin-bottom: 2rem;
+  display: inline-block;
+  transition: color 0.15s;
+  &:hover { color: $accent; }
+}
+
+.post__date {
+  font-family: $font-mono;
+  font-size: 0.85rem;
+  color: $muted;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.post__title {
+  font-size: 2.8rem;
+  margin-bottom: 0;
+}
+
+.post__author {
+  font-size: 0.95rem;
+  color: $muted;
+  margin-top: 0.65rem;
+}
+
+.post__header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid $border;
+}
+
+.post-content {
+  font-size: 1.12rem;
+  line-height: 1.8;
+  margin-bottom: 2.75rem;
+}
+
+// Structured sections — callout cards with colored indicator dots
+.post-section {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 10px;
+  padding: 2rem 2.25rem;
+  margin-bottom: 1.1rem;
+  font-size: 1.05rem;
+
+  p:last-child { margin-bottom: 0; }
+}
+
+.post-section__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: $font-display;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 1.1rem;
+
+  &::before {
+    content: '';
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+}
+
+.post-section--learned {
+  border-color: rgba($learned-color, 0.15);
+  .post-section__label { color: $learned-color; &::before { background: $learned-color; } }
+}
+.post-section--blockers {
+  border-color: rgba($blocker-color, 0.15);
+  .post-section__label { color: $blocker-color; &::before { background: $blocker-color; } }
+}
+.post-section--reflection {
+  border-color: rgba($reflect-color, 0.15);
+  .post-section__label { color: $reflect-color; &::before { background: $reflect-color; } }
+}
+
+.post-tags {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $border;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.post-tags__label {
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  color: $muted;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-right: 0.25rem;
+}
+
+.tag {
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  color: $muted;
+  border: 1px solid $border-strong;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  transition: color 0.15s, border-color 0.15s;
+  &:hover { color: $accent; border-color: rgba($accent, 0.3); }
+}
+
+@media (max-width: $bp-mobile) {
+  .post__title { font-size: 1.7rem; }
+}
+
+// ==========================================================
+// BLOG INDEX
+// ==========================================================
+.blog-index {
+  padding: 2rem 0;
+}
+
+.blog-index__title {
+  font-size: 2.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.blog-index__desc {
+  color: $muted;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  margin-bottom: 2.75rem;
+  max-width: 640px;
+}
+
+.blog-toc {
+  > li { margin-bottom: 0.85rem; }
+
+  details {
+    border: 1px solid $border;
+    border-radius: 8px;
+    overflow: hidden;
+
+    &[open] { border-color: $border-strong; }
+
+    summary {
+      font-family: $font-display;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 1rem 1.4rem;
+      cursor: pointer;
+      color: $text;
+      background: $surface;
+      transition: background 0.15s;
+      &:hover { background: $raised; }
+      &::marker { color: $accent; }
+    }
+
+    ul {
+      padding: 0.65rem 1.4rem 1.15rem;
+      li {
+        padding: 0.45rem 0;
+        a {
+          font-size: 1rem;
+          color: $text-dim;
+          font-weight: 500;
+          transition: color 0.15s;
+          &:hover { color: $accent; }
+        }
+      }
+    }
+  }
+}
+
+// ==========================================================
+// MENTORS
+// ==========================================================
+.mentors {
+  padding: 2rem 0;
+}
+
+.mentors__title {
+  font-size: 2.6rem;
+  margin-bottom: 3rem;
+}
+
+.mentor-block {
+  margin-bottom: 3.5rem;
+  padding-bottom: 3.5rem;
+  border-bottom: 1px solid $border;
+  &:last-child { border-bottom: none; padding-bottom: 0; }
+}
+
+.mentor-block__label {
+  font-family: $font-mono;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: $accent;
+  margin-bottom: 1.4rem;
+}
+
+.mentor-block__card {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.mentor-block__photo {
+  width: 170px;
+  height: 215px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.mentor-block__info h2 {
+  font-size: 1.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.mentor-block__role {
+  font-size: 0.92rem;
+  color: $muted;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+.mentor-block__link {
+  color: $accent;
+  font-size: 1rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: gap 0.2s;
+  &:hover { gap: 0.7rem; }
+}
+
+.mentor-bio {
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: $text-dim;
+}
+
+@media (max-width: $bp-tablet) {
+  .mentor-block__card { flex-direction: column; align-items: center; text-align: center; }
+}
+
+// ==========================================================
+// PROJECT
+// ==========================================================
+.project {
+  padding: 2rem 0;
+}
+
+.project__header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid $border;
+}
+
+.project__title { font-size: 2.7rem; margin-bottom: 0.3rem; }
+
+.project__subtitle {
+  font-size: 0.92rem;
+  color: $accent;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+}
+
+.project__name {
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 1.55rem;
+  font-style: italic;
+  color: $text;
+  margin-bottom: 2.75rem;
+  line-height: 1.35;
+}
+
+.project-section {
+  margin-bottom: 2.75rem;
+  p, ul, ol { font-size: 1.08rem; line-height: 1.75; color: $text-dim; }
+}
+
+.project-section__head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  margin-bottom: 0.85rem;
+}
+
+.project-section__num {
+  font-family: $font-display;
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: $accent;
+  line-height: 1;
+}
+
+.project-section__title {
+  font-size: 1.35rem;
+  margin: 0;
+}
+
+.project__report {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2.5rem;
+  transition: border-color 0.2s;
+  &:hover { border-color: rgba($accent, 0.3); }
+
+  .report-label {
+    font-family: $font-mono;
+    font-size: 0.68rem;
+    color: $muted;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+  }
+  a { color: $accent; font-weight: 700; font-size: 0.95rem; }
+}
+
+.project__mentors {
+  padding-top: 1.5rem;
+  border-top: 1px solid $border;
+  font-size: 0.88rem;
+  color: $muted;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 2rem;
+  span { color: $text; font-weight: 600; }
+}

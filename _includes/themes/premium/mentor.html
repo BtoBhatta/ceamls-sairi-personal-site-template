@@ -1,0 +1,56 @@
+<article>
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero__content reveal">
+        <span class="page-hero__eyebrow">Team</span>
+        <h1>{{ page.title }}</h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="mentors-section">
+    <div class="container">
+      {% if page.graduate_mentor %}
+      <div class="mentor reveal">
+        <span class="mentor__label">Graduate Student Mentor</span>
+        <div class="mentor__row">
+          {% if page.graduate_mentor.image %}
+          <img class="mentor__photo" src="{{ page.graduate_mentor.image | relative_url }}" alt="{{ page.graduate_mentor.name }}">
+          {% endif %}
+          <div class="mentor__body">
+            <h2>{{ page.graduate_mentor.name }}</h2>
+            <p class="mentor__role">{{ page.graduate_mentor.title }}</p>
+            {% if page.graduate_mentor.website %}
+            <a class="btn btn--outline btn--sm" href="{{ page.graduate_mentor.website }}" target="_blank">Website →</a>
+            {% endif %}
+          </div>
+        </div>
+        {% if page.graduate_mentor.bio %}
+        <div class="prose mentor__bio">{{ page.graduate_mentor.bio | markdownify }}</div>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      {% if page.faculty_mentor %}
+      <div class="mentor reveal">
+        <span class="mentor__label">Faculty Mentor</span>
+        <div class="mentor__row">
+          {% if page.faculty_mentor.image %}
+          <img class="mentor__photo" src="{{ page.faculty_mentor.image | relative_url }}" alt="{{ page.faculty_mentor.name }}">
+          {% endif %}
+          <div class="mentor__body">
+            <h2>{{ page.faculty_mentor.name }}</h2>
+            <p class="mentor__role">{{ page.faculty_mentor.title }}</p>
+            {% if page.faculty_mentor.website %}
+            <a class="btn btn--outline btn--sm" href="{{ page.faculty_mentor.website }}" target="_blank">Website →</a>
+            {% endif %}
+          </div>
+        </div>
+        {% if page.faculty_mentor.bio %}
+        <div class="prose mentor__bio">{{ page.faculty_mentor.bio | markdownify }}</div>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+  </section>
+</article>

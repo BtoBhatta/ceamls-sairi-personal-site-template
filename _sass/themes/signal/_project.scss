@@ -1,0 +1,120 @@
+// ==========================================================
+// Project Page
+// ==========================================================
+
+.project-page {
+  max-width: $content-max-width;
+  padding: $space-xl 0;
+}
+
+.project-header {
+  margin-bottom: $space-xl;
+  padding-bottom: $space-lg;
+  border-bottom: 1px solid $rule;
+}
+
+.project-header__title {
+  font-family: $font-display;
+  font-size: 2.4rem;
+  margin-bottom: $space-xs;
+  &::after { content: '.'; color: $orange; }
+}
+
+.project-header__subtitle {
+  font-size: 0.85rem;
+  color: $orange;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+}
+
+.project-title-section {
+  margin-bottom: $space-xl;
+  h3 {
+    font-family: $font-display;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: $warm-white;
+    line-height: 1.3;
+  }
+}
+
+.project-section {
+  margin-bottom: $space-xl;
+  p, ul, ol {
+    font-size: 1.02rem;
+    line-height: 1.8;
+    color: $warm-white-dim;
+  }
+}
+
+.project-section__header {
+  display: flex;
+  align-items: baseline;
+  gap: $space-md;
+  margin-bottom: $space-md;
+}
+
+.project-section__number {
+  font-family: $font-display;
+  font-size: 3rem;
+  font-weight: 800;
+  color: rgba($orange, 0.2);
+  line-height: 1;
+}
+
+.project-section__title {
+  font-family: $font-display;
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.project-report {
+  border: 1px solid $rule-strong;
+  border-radius: 8px;
+  padding: $space-lg;
+  margin-bottom: $space-xl;
+  background: $navy-light;
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  transition: border-color 0.2s ease;
+  &:hover { border-color: rgba($orange, 0.4); }
+
+  .report-text { flex: 1; }
+  .report-label {
+    font-size: 0.72rem;
+    color: $muted;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: $font-mono;
+    margin-bottom: $space-xs;
+  }
+  a { font-weight: 700; font-size: 1.02rem; }
+}
+
+.project-mentors {
+  padding-top: $space-lg;
+  border-top: 1px solid $rule;
+  font-size: 0.9rem;
+  color: $muted;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-sm $space-xl;
+
+  .mentor-credit span {
+    font-weight: 600;
+    color: $warm-white;
+  }
+}
+
+// Responsive
+@media (max-width: $bp-tablet) {
+  .project-header__title { font-size: 1.8rem; }
+}
+@media (max-width: $bp-mobile) {
+  .project-header__title { font-size: 1.5rem; }
+  .project-section__number { font-size: 2.2rem; }
+  .project-mentors { flex-direction: column; }
+}

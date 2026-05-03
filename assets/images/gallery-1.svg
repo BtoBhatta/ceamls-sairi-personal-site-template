@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="Gallery photo placeholder">
+  <rect width="600" height="400" fill="#fef3c7"/>
+  <circle cx="120" cy="120" r="40" fill="#fbbf24"/>
+  <path d="M40 360 L220 200 L340 280 L460 160 L560 360 Z" fill="#a16207"/>
+  <path d="M40 360 L240 240 L380 320 L560 220 L560 360 Z" fill="#854d0e"/>
+  <text x="300" y="385" text-anchor="middle" fill="#78350f" font-family="-apple-system, system-ui, sans-serif" font-size="13" font-weight="500">Gallery photo 1 — replace me</text>
+</svg>

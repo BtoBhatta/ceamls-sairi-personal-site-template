@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Profile photo placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <circle cx="200" cy="155" r="62" fill="#94a3b8"/>
+  <path d="M88 388c0-62 50-112 112-112s112 50 112 112" fill="#94a3b8"/>
+  <text x="200" y="376" text-anchor="middle" fill="#475569" font-family="-apple-system, system-ui, sans-serif" font-size="14" font-weight="500">Replace this photo</text>
+</svg>

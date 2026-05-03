@@ -1,0 +1,46 @@
+// ==========================================================
+// Design Tokens -- "Signal" Theme
+// Deep navy + electric orange. Confident. Forward-looking.
+// ==========================================================
+
+// Core palette
+$navy: #0A0E27;
+$navy-light: #111638;
+$navy-mid: #1a2048;
+$orange: #FF6B2B;
+$orange-hover: #E55A1B;
+$warm-white: #F0EDE8;
+$warm-white-dim: rgba(#F0EDE8, 0.7);
+$muted: #6B7490;
+$muted-light: #4A5568;
+$rule: rgba(#F0EDE8, 0.1);
+$rule-strong: rgba(#F0EDE8, 0.2);
+
+// Blog section accents
+$learned: #2D9B6E;
+$blocker: #E0A23C;
+$reflect: #7C6BF0;
+
+// Fonts
+$font-display: 'Syne', 'Impact', sans-serif;
+$font-body: 'Libre Franklin', 'Helvetica Neue', sans-serif;
+$font-mono: 'JetBrains Mono', 'Consolas', monospace;
+
+// Spacing
+$space-xs: 0.25rem;
+$space-sm: 0.5rem;
+$space-md: 1rem;
+$space-lg: 2rem;
+$space-xl: 3rem;
+$space-2xl: 5rem;
+$space-3xl: 8rem;
+
+// Breakpoints
+$bp-mobile: 480px;
+$bp-tablet: 768px;
+$bp-desktop: 1024px;
+
+// Layout
+$sidebar-width: 260px;
+$content-max-width: 720px;
+$site-max-width: 1100px;

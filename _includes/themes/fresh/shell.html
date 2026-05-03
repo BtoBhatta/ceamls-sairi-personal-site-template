@@ -1,0 +1,37 @@
+<header class="mobile-bar" id="mobileBar">
+  <span class="mobile-bar__brand">{{ site.program }}</span>
+  <button class="mobile-bar__btn" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="site-wrap">
+  <nav class="site-nav" id="siteNav" aria-label="Main navigation">
+    <div class="nav-brand">
+      {% if site.logo %}
+      <img src="{{ site.logo | relative_url }}" alt="" class="nav-brand__logo">
+      {% endif %}
+      <span class="nav-brand__name">{{ site.program }}</span>
+      <span class="nav-brand__sub">Summer {{ site.year }}</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' or page.url == '/index.html' %}class="active"{% endif %}>Home</a></li>
+      <li><a href="{{ '/about-me.html' | relative_url }}" {% if page.url == '/about-me.html' %}class="active"{% endif %}>About Me</a></li>
+      <li><a href="{{ '/about-my-mentor.html' | relative_url }}" {% if page.url == '/about-my-mentor.html' %}class="active"{% endif %}>Mentors</a></li>
+      <li><a href="{{ '/about-my-project.html' | relative_url }}" {% if page.url == '/about-my-project.html' %}class="active"{% endif %}>Project</a></li>
+      <li><a href="{{ '/my-blog.html' | relative_url }}" {% if page.url == '/my-blog.html' or page.layout == 'post' %}class="active"{% endif %}>Blog</a></li>
+    </ul>
+  </nav>
+
+  <main class="main">
+    {{ content }}
+  </main>
+</div>
+
+<footer class="site-footer">
+  <p>{{ site.program }} Summer {{ site.year }}</p>
+</footer>
+
+<div class="nav-backdrop" id="navBackdrop"></div>
+
+<script src="{{ '/assets/js/themes/fresh.js' | relative_url }}" defer></script>

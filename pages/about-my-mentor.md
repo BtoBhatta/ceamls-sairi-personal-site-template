@@ -4,23 +4,28 @@ title: About My Mentors
 permalink: /about-my-mentor.html
 
 graduate_mentor:
-  name: Jordan Bailey
-  title: PhD Student, Electrical Engineering
-  image: /assets/images/graduate-student-mentor.jpg
-  website: https://gradmentor.example.com
+  name: Alex Morgan
+  title: PhD Candidate, Computer Engineering
+  image: /assets/images/graduate-student-mentor.svg
+  website: https://example.com/alex-morgan
   bio: |
-    Jordan Bailey is a PhD candidate in Electrical Engineering, focused on energy-efficient neuromorphic computing. Her research explores how brain-inspired hardware can improve the performance and sustainability of edge AI systems and intelligent devices.
-    
-    Beyond the lab, Jordan has been a hands-on mentor—guiding me through research, publishing, and grad school preparation. Her support has been instrumental in helping me grow both technically and professionally, always encouraging thoughtful problem-solving and a deeper understanding of the field.
+    Alex is a PhD candidate working on adaptive systems and embedded machine learning.
+    They've been an incredible mentor — patient with my questions and great at helping
+    me connect ideas across disciplines.
+
+    Outside of research, Alex organizes weekly reading groups and is a strong advocate
+    for undergraduate research participation.
 
 faculty_mentor:
-  name: Dr. Elijah Freeman
-  title: Professor Emeritus, Tuskegee University
-  image: /assets/images/faculty-mentor.jpg
-  website: https://facultymentor.example.com
+  name: Dr. Pat Nguyen
+  title: Associate Professor, School of Engineering
+  image: /assets/images/faculty-mentor.svg
+  website: https://example.com/pat-nguyen
   bio: |
-    Dr. Elijah Freeman is a pioneering figure in the field of neural engineering and robotics. With over four decades of experience in academia and research, his work has focused on developing accessible brain-computer interface systems and exploring how robotics can enhance human capability.
-    
-    A passionate advocate for diversity in STEM, Dr. Freeman has mentored dozens of underrepresented students and continues to inspire the next generation of researchers and technologists through his leadership and legacy.
+    Dr. Nguyen leads a research group focused on human-centered computing and
+    accessibility. Their guidance has helped me sharpen my research questions and
+    think more carefully about real-world impact.
 
+    Dr. Nguyen has mentored many SAIRI students and is a champion for broadening
+    participation in computing.
 ---

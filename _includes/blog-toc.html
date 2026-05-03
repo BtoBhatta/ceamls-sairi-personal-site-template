@@ -1,0 +1,51 @@
+{% comment %}
+  Shared weekly-accordion table of contents for the blog index.
+  Used by every theme's _includes/themes/<theme>/blog.html.
+  Renders <ul class="blog-toc"> with weeks as <details>.
+{% endcomment %}
+<ul class="blog-toc">
+  {% assign posts             = site.posts | sort: "date" %}
+  {% assign seconds_per_day   = 86400 %}
+  {% assign previous_monday   = "" %}
+  {% assign week_counter      = 0 %}
+
+  {% for post in posts %}
+    {% assign post_ts    = post.date | date: "%s" %}
+    {% assign dow        = post.date | date: "%w" | plus: 0 %}
+
+    {% if dow == 0 %}
+      {% assign back_days = 6 %}
+    {% else %}
+      {% assign back_days = dow | minus: 1 %}
+    {% endif %}
+    {% assign back_seconds       = back_days | times: seconds_per_day %}
+    {% assign monday_ts          = post_ts | minus: back_seconds %}
+    {% assign four_days_secs     = seconds_per_day | times: 4 %}
+    {% assign friday_ts          = monday_ts | plus: four_days_secs %}
+
+    {% capture monday_str %}{{ monday_ts  | date: "%B %-d" }}{% endcapture %}
+    {% capture friday_str %}{{ friday_ts  | date: "%B %-d" }}{% endcapture %}
+
+    {% unless monday_ts == previous_monday %}
+      {% assign week_counter    = week_counter | plus: 1 %}
+      {% if previous_monday != "" %}
+          </ul>
+        </details>
+      </li>
+      {% endif %}
+      <li>
+        <details {% if forloop.first %}open{% endif %}>
+          <summary><strong>Week {{ week_counter }} ({{ monday_str }} – {{ friday_str }})</strong></summary>
+          <ul>
+      {% assign previous_monday = monday_ts %}
+    {% endunless %}
+
+    <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+
+    {% if forloop.last %}
+          </ul>
+        </details>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>

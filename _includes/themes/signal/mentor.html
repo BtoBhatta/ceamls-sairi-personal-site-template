@@ -1,0 +1,61 @@
+<article class="mentor-page">
+  <h1 class="mentor-page__title">{{ page.title }}</h1>
+
+  {% if page.graduate_mentor %}
+  <section class="mentor-section animate-in">
+    <p class="mentor-type-label">Graduate Student Mentor</p>
+    <div class="mentor-card">
+      {% if page.graduate_mentor.image %}
+      <img
+        class="mentor-image"
+        src="{{ page.graduate_mentor.image | relative_url }}"
+        alt="{{ page.graduate_mentor.name }}"
+      />
+      {% endif %}
+      <div class="mentor-info">
+        <h2>{{ page.graduate_mentor.name }}</h2>
+        <p class="mentor-title">{{ page.graduate_mentor.title }}</p>
+        {% if page.graduate_mentor.website %}
+        <a class="mentor-link" href="{{ page.graduate_mentor.website }}" target="_blank">
+          Visit Website ↗
+        </a>
+        {% endif %}
+      </div>
+    </div>
+    {% if page.graduate_mentor.bio %}
+    <div class="mentor-bio">
+      {{ page.graduate_mentor.bio | markdownify }}
+    </div>
+    {% endif %}
+  </section>
+  {% endif %}
+
+  {% if page.faculty_mentor %}
+  <section class="mentor-section animate-in">
+    <p class="mentor-type-label">Faculty Mentor</p>
+    <div class="mentor-card">
+      {% if page.faculty_mentor.image %}
+      <img
+        class="mentor-image"
+        src="{{ page.faculty_mentor.image | relative_url }}"
+        alt="{{ page.faculty_mentor.name }}"
+      />
+      {% endif %}
+      <div class="mentor-info">
+        <h2>{{ page.faculty_mentor.name }}</h2>
+        <p class="mentor-title">{{ page.faculty_mentor.title }}</p>
+        {% if page.faculty_mentor.website %}
+        <a class="mentor-link" href="{{ page.faculty_mentor.website }}" target="_blank">
+          Visit Website ↗
+        </a>
+        {% endif %}
+      </div>
+    </div>
+    {% if page.faculty_mentor.bio %}
+    <div class="mentor-bio">
+      {{ page.faculty_mentor.bio | markdownify }}
+    </div>
+    {% endif %}
+  </section>
+  {% endif %}
+</article>

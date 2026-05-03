@@ -1,0 +1,5 @@
+# Override config for the minimal-theme preview build.
+# Used by GitHub Actions: jekyll build --config _config.yml,_config_preview_minimal.yml -d _site/_preview/minimal
+theme_name: minimal
+baseurl: /_preview/minimal
+preview_mode: true

@@ -1,0 +1,68 @@
+<article class="about-page">
+  <section class="about-hero animate-in">
+    {% if page.about.image %}
+    <img
+      src="{{ page.about.image | relative_url }}"
+      alt="{{ page.about.name }}"
+      class="about-photo"
+    />
+    {% endif %}
+
+    <div class="about-intro">
+      <h1>{{ page.about.name }}</h1>
+      {% if page.about.role %}
+      <p class="about-subtitle">{{ page.about.role }}</p>
+      {% endif %}
+      {% if page.about.linkedin %}
+      <a href="{{ page.about.linkedin }}" class="about-link" target="_blank">
+        Connect on LinkedIn ↗
+      </a>
+      {% endif %}
+    </div>
+  </section>
+
+  {% if page.about.bio %}
+  <section class="about-bio animate-in">
+    <h2>My Story</h2>
+    {{ page.about.bio | markdownify }}
+  </section>
+  {% endif %}
+
+  {% if page.about.hobbies %}
+  <section class="about-hobbies animate-in">
+    <h2>Hobbies</h2>
+    <div class="hobby-grid">
+      {% for hobby in page.about.hobbies %}
+      <div class="hobby-card">
+        <div class="hobby-icon">{{ hobby.icon }}</div>
+        <h3>{{ hobby.title }}</h3>
+        <p>{{ hobby.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if page.about.gallery %}
+  <section class="about-gallery animate-in">
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+      {% for item in page.about.gallery %}
+      <div class="gallery-item">
+        <img src="{{ item.image | relative_url }}" alt="{{ item.caption }}" />
+        <div class="gallery-caption">{{ item.caption }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" aria-modal="true" role="dialog">
+    <button id="lightboxClose" class="lightbox__close" aria-label="Close lightbox">&times;</button>
+    <button id="lightboxPrev" class="lightbox__nav lightbox__nav--prev" aria-label="Previous image">&#8249;</button>
+    <img id="lightboxImg" class="lightbox__img" src="" alt="" />
+    <button id="lightboxNext" class="lightbox__nav lightbox__nav--next" aria-label="Next image">&#8250;</button>
+    <div id="lightboxCaption" class="lightbox__caption"></div>
+  </div>
+  {% endif %}
+</article>

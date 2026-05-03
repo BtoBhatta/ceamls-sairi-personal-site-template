@@ -1,7 +1,48 @@
-title: CEAMLS SAIRI Website Summer 2025 
-logo: assests/images/logo.png
-description: Hi! My name is Ta'quavion Johnson and this is my CEAMLS SAIRI Website for Summer 2025.
-show_downloads: true
-google_analytics:
-theme: jekyll-theme-minimal
-future: true
+# =====================================================
+# CEAMLS SAIRI Personal Site Template
+# Edit the lines marked with the arrow comment to personalize your site.
+# =====================================================
+
+# ----- Identity (shown in SEO + browser tab) -----
+title: Your Name Here                              # <- your name
+author: Your Name Here                             # <- your name (shown as post byline)
+description: My CEAMLS SAIRI Summer Research Site  # <- short site tagline
+email:                                             # <- (optional) contact email for SEO
+url: https://your-username.github.io               # <- your final site URL (canonical SEO links)
+lang: en-US
+
+# ----- Branding (program-wide; rarely changes) -----
+program: CEAMLS SAIRI                              # program name shown in nav/footer
+program_long: CEAMLS SAIRI Summer Research         # longer form used in descriptive text
+year: 2026                                         # the cohort year (shown as "Summer {{ site.year }}")
+logo: /assets/images/logo.png
+
+# ----- Theme selection -----
+# Choose one of: minimal | premium | fresh | signal
+# See README.md for screenshots of each theme.
+theme_name: signal
+
+# ----- Site behavior -----
+show_downloads: false
+google_analytics:                                  # <- (optional) paste your GA tracking ID
+future: true                                       # post-dated entries still publish (useful during the program)
+permalink: /:title:output_ext                      # default URL shape for new posts (e.g. /day-12.html)
+
+# ----- Build -----
+exclude:
+  - vendor/
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - LICENSE
+  - docs/
+  - .github/
+  - bin/
+  - _config_preview_minimal.yml
+  - _config_preview_premium.yml
+  - _config_preview_fresh.yml
+  - _config_preview_signal.yml
+
+# ----- Plugins -----
+plugins:
+  - jekyll-seo-tag

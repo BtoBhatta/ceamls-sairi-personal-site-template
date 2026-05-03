@@ -1,0 +1,32 @@
+// =====================================================
+// Signal theme — deep navy + electric orange (CEAMLS SAIRI brand)
+// Front-matter contract consumed:
+//   page.image, page.title, page.description, page.motto, page.quick_facts, page.linkedin
+//   page.about.{name, role, image, linkedin, bio, hobbies, gallery}
+//   page.title, page.graduate_mentor.{name, title, image, website, bio}
+//                page.faculty_mentor.{name, title, image, website, bio}
+//   page.title, page.date, page.author, page.what_i_learned, page.blockers,
+//                page.reflection, page.tags
+//   page.title, page.subtitle, page.project_title, page.problem, page.approach,
+//                page.outcome, page.final_report_url,
+//                page.grad_mentor.{name, linkedin}, page.faculty_mentor.{name, linkedin}
+//
+// Notes on adaptations from signal-theme-draft source:
+//   - Source layouts had no inline <script> tags; all JS lives in signal.js
+//     (consolidated from the source's assets/js/main.js).
+//   - Source consumed the same front-matter keys as the canonical contract,
+//     so no key renames were needed.
+// =====================================================
+
+@import "variables";
+@import "reset";
+@import "typography";
+@import "layout";
+@import "nav";
+@import "components";
+@import "homepage";
+@import "about";
+@import "blog";
+@import "mentor";
+@import "project";
+@import "animations";

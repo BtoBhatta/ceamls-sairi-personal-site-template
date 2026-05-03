@@ -1,0 +1,61 @@
+{%- comment -%}
+  Premium-light post layout did NOT display page.author. The contract includes
+  page.author; we surface it as a small byline beneath the date so the field
+  is honored without disrupting the original article-style hero.
+{%- endcomment -%}
+<article class="article">
+  <header class="article__header">
+    <div class="container container--narrow">
+      <a href="{{ '/my-blog.html' | relative_url }}" class="article__back reveal">← All entries</a>
+      <span class="article__date reveal">{{ page.date | date: "%B %-d, %Y" }}</span>
+      <h1 class="article__title reveal delay-1">{{ page.title }}</h1>
+      {% if page.author or site.author %}
+      <p class="article__author reveal delay-2">By {{ page.author | default: site.author }}</p>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="container container--narrow">
+    <div class="prose reveal delay-2">
+      {{ content }}
+    </div>
+
+    {% if page.what_i_learned %}
+    <aside class="callout callout--green reveal">
+      <div class="callout__head">
+        <span class="callout__dot"></span>
+        <span class="callout__label">What I Learned</span>
+      </div>
+      <div class="prose">{{ page.what_i_learned | markdownify }}</div>
+    </aside>
+    {% endif %}
+
+    {% if page.blockers %}
+    <aside class="callout callout--amber reveal">
+      <div class="callout__head">
+        <span class="callout__dot"></span>
+        <span class="callout__label">Blockers</span>
+      </div>
+      <div class="prose">{{ page.blockers | markdownify }}</div>
+    </aside>
+    {% endif %}
+
+    {% if page.reflection %}
+    <aside class="callout callout--violet reveal">
+      <div class="callout__head">
+        <span class="callout__dot"></span>
+        <span class="callout__label">Reflection</span>
+      </div>
+      <div class="prose">{{ page.reflection | markdownify }}</div>
+    </aside>
+    {% endif %}
+
+    {% if page.tags %}
+    <footer class="article__tags reveal">
+      {% for tag in page.tags %}
+      <span class="pill">{{ tag }}</span>
+      {% endfor %}
+    </footer>
+    {% endif %}
+  </div>
+</article>

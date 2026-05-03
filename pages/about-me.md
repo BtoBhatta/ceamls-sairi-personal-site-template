@@ -5,34 +5,35 @@ permalink: /about-me.html
 
 about:
   name: Clyde Tandjong
-  role: Senior, CS @ MSU
-  image: /assets/images/me.jpeg
-  linkedin: https://www.linkedin.com/in/clyde-tandjong-7a3ab0150/
+  role: Junior, Computer Science
+  image: /assets/images/profile.svg
+  linkedin: https://www.linkedin.com/in/example
   bio: |
-    I’m currently a senior studying Computer Science at Morgan State University in Baltimore, Maryland. I expect to graduate in 2025.
+    Hi! I'm Clyde, a Computer Science student in the CEAMLS SAIRI Summer Research program.
 
-    My work explores the intersection of hardware and intelligence—how wearable devices and embedded systems can help people better understand their health and environment.
+    My research interests sit at the intersection of human-computer interaction and applied
+    machine learning. I'm especially curious about how everyday tools can be made more
+    accessible and adaptive through smart software.
 
-    When I’m not working on research, I enjoy mentoring younger students, playing jazz trumpet, and tinkering with Raspberry Pi projects in my free time.
+    Outside of class, you'll find me biking trails, learning languages, or working on small
+    side projects with friends.
 
   hobbies:
-    - icon: 🎺
-      title: Playing Trumpet
-      description: I’ve been playing trumpet since middle school and love improvising to Coltrane and Miles Davis tracks.
-    - icon: 🤖
-      title: Raspberry Pi Projects
-      description: I enjoy building mini smart devices—like home sensors and wearables—using Raspberry Pi.
-    - icon: 🕹️
-      title: Retro Gaming
-      description: I love modding old consoles and diving into pixel art games on emulators.
+    - icon: 🎨
+      title: Digital Art
+      description: I make small illustrations and pixel art in my spare time.
+    - icon: 🚲
+      title: Biking
+      description: Weekend trail rides are how I reset.
+    - icon: 📚
+      title: Reading
+      description: Sci-fi novels and design essays — both equally inspiring.
 
   gallery:
-    - image: /assets/images/me-guitar.png
-      caption: Playing guitar at the park!
-    - image: /assets/images/me-basketball.png
-      caption: Hooping and dropping people off at the park 🏀
-    - image: /assets/images/me.jpg
-      caption: My favorite portrait of myself :)
-    - image: /assets/images/me-pi.png
-      caption: Working on a personal project w/ the Raspberry PI
+    - image: /assets/images/gallery-1.svg
+      caption: A great day on the trail.
+    - image: /assets/images/gallery-2.svg
+      caption: One of my recent illustrations.
+    - image: /assets/images/gallery-3.svg
+      caption: Hanging out with friends after class.
 ---

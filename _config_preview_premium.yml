@@ -1,0 +1,4 @@
+# Override config for the premium-theme preview build.
+theme_name: premium
+baseurl: /_preview/premium
+preview_mode: true

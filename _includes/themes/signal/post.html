@@ -1,0 +1,47 @@
+<article class="blog-post">
+  <div class="post-breadcrumb">
+    <a href="{{ '/my-blog.html' | relative_url }}">← Back to blog</a>
+  </div>
+
+  <header class="post-header animate-in">
+    <p class="post-date">{{ page.date | date: "%B %-d, %Y" }}</p>
+    <h1 class="post-title">{{ page.title }}</h1>
+    {% if page.author %}
+    <p class="post-author">By {{ page.author | default: site.author }}</p>
+    {% endif %}
+  </header>
+
+  <section class="post-content animate-in">
+    {{ content }}
+  </section>
+
+  {% if page.what_i_learned %}
+  <section class="post-section post-section--learned animate-in stagger-1">
+    <span class="section-label">Learned</span>
+    {{ page.what_i_learned | markdownify }}
+  </section>
+  {% endif %}
+
+  {% if page.blockers %}
+  <section class="post-section post-section--blockers animate-in stagger-2">
+    <span class="section-label">Blockers</span>
+    {{ page.blockers | markdownify }}
+  </section>
+  {% endif %}
+
+  {% if page.reflection %}
+  <section class="post-section post-section--reflection animate-in stagger-3">
+    <span class="section-label">Reflection</span>
+    {{ page.reflection | markdownify }}
+  </section>
+  {% endif %}
+
+  {% if page.tags %}
+  <footer class="post-tags">
+    <span class="tags-label">Keywords</span>
+    {% for tag in page.tags %}
+      <span class="tag">{{ tag }}</span>
+    {% endfor %}
+  </footer>
+  {% endif %}
+</article>

@@ -1,16 +1,25 @@
 ---
 layout: home
 title: Clyde Tandjong
-description: CEAMLS SAIRI Summer 2025 Research Website
+description: My CEAMLS SAIRI Summer Research Site
 
-motto: "Harnessing code, curiosity, and creativity to shape tomorrow."
+motto: "Curious about how research can shape better tools for everyday life."
 
 quick_facts:
-  - "🎓 Senior, CS @ MSU"
-  - "🔬 Research: HCI + AI"
-  - "📍 Based in PG Maryland"
-  - "🚀 Passionate about building smart systems for real-world impact"
+  - "🎓 Junior, Computer Science"
+  - "🔬 Interested in Quantum Physics"
+  - "📍 Based in Baltimore, MD"
+  - "🚀 I like pineapples"
 
-linkedin: https://www.linkedin.com/in/clyde-tandjong-7a3ab0150/
-image: /assets/images/me.jpeg
+linkedin: https://www.linkedin.com/in/example
+image: /assets/images/profile.svg
+
+# A "Currently" block — three short status lines for the home page.
+currently:
+  - label: Reading
+    text: "The Design of Everyday Things — Don Norman"
+  - label: Building
+    text: "A small Raspberry Pi sensor logging dashboard"
+  - label: Wondering
+    text: "How accessibility research can shape consumer hardware"
 ---
