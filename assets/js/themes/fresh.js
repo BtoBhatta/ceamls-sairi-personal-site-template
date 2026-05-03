@@ -36,6 +36,12 @@
       });
     }
     if (backdrop) backdrop.addEventListener('click', closeNav);
+    // Close the drawer when any nav link is tapped
+    if (nav) {
+      nav.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', closeNav);
+      });
+    }
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && nav && nav.classList.contains('open')) closeNav();
     });

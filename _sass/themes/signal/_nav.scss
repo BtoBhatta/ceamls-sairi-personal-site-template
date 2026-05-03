@@ -81,22 +81,32 @@
   top: 0;
   left: 0;
   right: 0;
+  height: 56px;
   z-index: 1000;
-  background: rgba($navy, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba($navy, 0.85);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
   border-bottom: 1px solid $rule;
-  padding: $space-md $space-lg;
+  padding: 0 $space-md 0 $space-lg;
   align-items: center;
   justify-content: space-between;
 }
 
 .mobile-header__brand {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
   font-family: $font-display;
   font-weight: 800;
   font-size: 0.95rem;
   color: $warm-white;
   letter-spacing: -0.02em;
+}
+
+.mobile-header__logo {
+  display: block;
+  height: 30px;
+  width: auto;
 }
 
 .mobile-header__toggle {

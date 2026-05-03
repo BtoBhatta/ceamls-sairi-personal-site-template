@@ -41,6 +41,13 @@
       navOverlay.addEventListener('click', closeNav);
     }
 
+    // Close drawer when any nav link is tapped
+    if (siteNav) {
+      siteNav.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', closeNav);
+      });
+    }
+
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && siteNav && siteNav.classList.contains('open')) {
         closeNav();

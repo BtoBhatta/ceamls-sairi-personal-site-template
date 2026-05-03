@@ -221,41 +221,54 @@ hr { border: none; border-top: 1px solid $border; margin: 3rem 0; }
   }
 }
 
-// Mobile header
+// Mobile header — slim and unobtrusive
 .mobile-bar {
   display: none;
   position: fixed;
   top: 0; left: 0; right: 0;
+  height: 56px;
   z-index: 100;
-  padding: 0.85rem 1.5rem;
-  background: rgba($base, 0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  padding: 0 1rem 0 1.25rem;
+  background: rgba($base, 0.85);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
   border-bottom: 1px solid $border;
   align-items: center;
   justify-content: space-between;
 }
 
 .mobile-bar__brand {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
   font-family: $font-display;
   font-weight: 800;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
+  color: $text;
+}
+
+.mobile-bar__logo {
+  display: block;
+  height: 30px;
+  width: auto;
 }
 
 .mobile-bar__btn {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 0.4rem;
+  justify-content: center;
+  gap: 5px;
+  padding: 0.5rem;
+  border-radius: 6px;
   span {
-    display: block; width: 20px; height: 2px;
+    display: block; width: 22px; height: 2px;
     background: $text; border-radius: 1px;
     transition: transform 0.3s, opacity 0.3s;
   }
   &[aria-expanded="true"] {
-    span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     span:nth-child(2) { opacity: 0; }
-    span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
   }
 }
 
@@ -271,17 +284,29 @@ hr { border: none; border-top: 1px solid $border; margin: 3rem 0; }
 
 @media (max-width: $bp-tablet) {
   .mobile-bar { display: flex; }
-  .site-wrap { flex-direction: column; padding: 0 1.25rem; }
-  .main { padding: 5rem 0 4rem; max-width: 100%; }
+  .site-wrap {
+    flex-direction: column;
+    padding: 0 1.25rem;
+    gap: 0;
+  }
+  // Push content below the fixed mobile bar (56px) plus breathing room
+  .main { padding: calc(56px + 2rem) 0 4rem; max-width: 100%; }
   .site-nav {
     position: fixed; top: 0; left: 0; bottom: 0;
-    width: 260px; background: $surface;
+    width: 280px; background: $surface;
     border-right: 1px solid $border-strong;
-    padding: 3rem 1.5rem;
-    z-index: 99;
+    padding: calc(56px + 1.5rem) 1.5rem 1.5rem;  // space below mobile bar
+    z-index: 110;                                 // above mobile bar so drawer overlays it
     transform: translateX(-100%);
-    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    transition: transform 0.32s cubic-bezier(0.32, 0.72, 0, 1);
+    overflow-y: auto;
     &.open { transform: translateX(0); }
+  }
+  .nav-brand { margin-bottom: 2rem; }
+  .nav-brand__logo { width: 180px; }
+  .nav-links a {
+    font-size: 1.05rem;
+    padding: 0.85rem 1rem;
   }
 }
 

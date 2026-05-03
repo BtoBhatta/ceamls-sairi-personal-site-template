@@ -1,5 +1,11 @@
 <header class="mobile-header" id="mobileHeader">
-  <span class="mobile-header__brand">{{ site.program }}</span>
+  <a href="{{ '/' | relative_url }}" class="mobile-header__brand" aria-label="{{ site.program }} — home">
+    {% if site.logo_on_dark %}
+      <img src="{{ site.logo_on_dark | relative_url }}" alt="{{ site.program }}" class="mobile-header__logo">
+    {% else %}
+      <span>{{ site.program }}</span>
+    {% endif %}
+  </a>
   <button class="mobile-header__toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
     <span class="hamburger-line"></span>
     <span class="hamburger-line"></span>

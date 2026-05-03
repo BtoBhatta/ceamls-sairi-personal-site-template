@@ -1,5 +1,11 @@
 <header class="mobile-bar" id="mobileBar">
-  <span class="mobile-bar__brand">{{ site.program }}</span>
+  <a href="{{ '/' | relative_url }}" class="mobile-bar__brand" aria-label="{{ site.program }} — home">
+    {% if site.logo_on_dark %}
+      <img src="{{ site.logo_on_dark | relative_url }}" alt="{{ site.program }}" class="mobile-bar__logo">
+    {% else %}
+      <span>{{ site.program }}</span>
+    {% endif %}
+  </a>
   <button class="mobile-bar__btn" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
