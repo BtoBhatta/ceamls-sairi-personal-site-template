@@ -934,7 +934,10 @@ footer.footer {
 
   .site-container {
     flex-direction: column;
-    padding-top: calc(56px + 1.5rem);   // clear the mobile bar
+    max-width: 100%;
+    padding: calc(56px + 1rem) 1rem 2rem;   // clear the mobile bar; tighter side padding
+    margin: 0;                               // no auto-margin (full width on mobile)
+    gap: 0;                                  // no inter-child gap when only content-area remains
     overflow-x: hidden;
   }
 
@@ -973,7 +976,11 @@ footer.footer {
 
   .content-area {
     width: 100%;
-    padding: 1.5rem;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 1.25rem;
+    border-radius: 12px;
+    flex: none;
   }
 
   .homepage-container {
