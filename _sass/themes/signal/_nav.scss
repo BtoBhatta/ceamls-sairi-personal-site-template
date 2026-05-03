@@ -20,11 +20,11 @@
 }
 
 .site-nav__logo {
-  width: 40px;
+  display: block;
+  width: 160px;
+  max-width: 100%;
   height: auto;
-  margin-bottom: $space-sm;
-  filter: brightness(0) invert(1);
-  opacity: 0.9;
+  margin-bottom: $space-md;
 }
 
 .site-nav__program {
