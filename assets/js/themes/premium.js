@@ -7,36 +7,36 @@
 (function () {
   document.addEventListener('DOMContentLoaded', function () {
 
-    // --- Mobile nav (shell.html) ---
+    // --- Mobile nav (slide-in drawer from the left) ---
     var toggle = document.getElementById('navToggle');
-    var links = document.getElementById('navLinks');
+    var drawer = document.getElementById('siteNav');
     var overlay = document.getElementById('navOverlay');
 
     function openNav() {
-      links.classList.add('open');
-      overlay.classList.add('on');
+      if (!drawer || !toggle) return;
+      drawer.classList.add('open');
+      if (overlay) overlay.classList.add('on');
       toggle.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
     }
     function closeNav() {
-      if (!links || !overlay || !toggle) return;
-      links.classList.remove('open');
-      overlay.classList.remove('on');
+      if (!drawer || !toggle) return;
+      drawer.classList.remove('open');
+      if (overlay) overlay.classList.remove('on');
       toggle.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
     }
 
-    if (toggle && links && overlay) {
+    if (toggle && drawer) {
       toggle.addEventListener('click', function () {
-        links.classList.contains('open') ? closeNav() : openNav();
+        drawer.classList.contains('open') ? closeNav() : openNav();
       });
-      overlay.addEventListener('click', closeNav);
-      // Close drawer when any nav link is tapped
-      links.querySelectorAll('a').forEach(function (a) {
+      if (overlay) overlay.addEventListener('click', closeNav);
+      drawer.querySelectorAll('a').forEach(function (a) {
         a.addEventListener('click', closeNav);
       });
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeNav();
+        if (e.key === 'Escape' && drawer.classList.contains('open')) closeNav();
       });
     }
 
