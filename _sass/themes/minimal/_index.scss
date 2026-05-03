@@ -95,9 +95,11 @@ strong {
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.sidebar:hover {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
-  transform: translateY(-2px);
+@media (min-width: 769px) {
+  .sidebar:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+  }
 }
 
 .sidebar h3 {
@@ -913,7 +915,7 @@ footer.footer {
 
   // Sidebar becomes a slide-in drawer from the left
   .sidebar {
-    position: fixed;
+    position: fixed !important;
     top: 0; left: 0; bottom: 0;
     width: 280px;
     height: 100vh;
@@ -923,11 +925,11 @@ footer.footer {
     box-shadow: 4px 0 30px rgba(0, 0, 0, 0.08);
     border-radius: 0;
     z-index: 110;                                  // above mobile bar
-    transform: translateX(-100%);
+    transform: translateX(-100%) !important;
     transition: transform 0.32s cubic-bezier(0.32, 0.72, 0, 1);
     overflow-y: auto;
     flex: none;
-    &.open { transform: translateX(0); }
+    &.open { transform: translateX(0) !important; }
   }
 
   .site-container {
