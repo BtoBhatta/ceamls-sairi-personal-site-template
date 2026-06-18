@@ -5,26 +5,22 @@ permalink: /about-my-project.html
 
 subtitle: Human-Computer Interaction & Adaptive Systems
 project_title: "My Summer Research Project"
+topic: "Predictive Stability vs. Fairness Instability in Clinical ECG Classification: A Multi-Run Analysis of Deep Learning Models"
 
 problem: |
-  Briefly describe the problem your project tackles. Who is affected? Why does this
-  matter? What gap or limitation are you trying to address?
+  This project focuses on using artificial intelligence to automatically analyze ECG (Electrocardiogram) signals and detect potential heart conditions. ECG interpretation is traditionally done by medical experts, which can be time-consuming and may vary between clinicians.
 
-  Aim for two to three short paragraphs. Plain language is great — your audience
-  may not be specialists in your sub-field.
+  There is a need for automated and reliable systems that can assist in early detection of heart abnormalities, especially using large-scale medical datasets like PTB-XL. The challenge is to build a model that can learn meaningful patterns from raw ECG signals and generalize well across different patient groups.
 
 approach: |
-  Describe how you'll approach the problem. A bulleted plan works well:
-
-  - Step 1 — what you'll build, collect, or analyze first
-  - Step 2 — the next phase of the work
-  - Step 3 — how you'll evaluate or test
-  - Step 4 — how you'll communicate the results
-
-  Mention the specific tools, datasets, or methods you'll use.
+  - Explore and preprocess the PTB-XL ECG dataset to understand signal structure and labels  
+  - Perform data analysis and study patient metadata such as age and sex distribution  
+  - Develop a 1D Convolutional Neural Network (1D-CNN) using Python, TensorFlow/Keras, and Google Colab  
+  - Train and evaluate the model for ECG classification tasks  
+  - Study fairness aspects by comparing performance across different demographic groups  
+  - Document findings using Overleaf and research papers for better academic structure  
 
 outcome: |
-  What do you expect to produce by the end of the program? A working prototype?
   By the end of the project, I expect to produce a working prototype of an ECG classification system using a 1D-CNN model trained on the PTB-XL dataset. This model will be able to analyze ECG signals and predict possible heart conditions.
 
   In addition to the model, I will produce project documentation and a research-style summary explaining the dataset, preprocessing steps, model development, and evaluation results.
